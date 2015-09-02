@@ -1,0 +1,15 @@
+<% include ../partials/header %>
+<h5>This comment originally posted on <%= comment.date %> </h5>
+			<!-- TODO: Add post.user.name. Can't do using currentUser-have to use poster's id...  by = user.firstName -->
+
+	<p><%=comment.content%>
+	<button class="btn btn-warning"><a href="/posts/<%= post._id%>/comments/<%= comment._id %>/edit">Edit Comment</a></button>
+	  <form action="/posts/:post_id/comments/<%= comment._id%>?_method=DELETE" method="POST">
+    <input class="btn btn-danger" type="submit" value="Delete">
+  </form>
+
+  <button class="btn btn-success"><a href="/posts">Back to All Posts</a></button>
+   <a class="btn btn-default" href="/signup">Signup</a>
+ <a class="btn btn-default" href="/login">Login</a>
+ <a class="btn btn-default" href="/logout">Logout</a>
+<% include ../partials/footer %>

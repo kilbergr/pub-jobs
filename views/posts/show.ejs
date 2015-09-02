@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<h2 class="bg-warning"><%= post.title %></h2>
+<h5>Originally posted on <%= post.date %></h5>
+	<p><%=post.content%>
+	</p>
+	<a href="/posts/<%= post._id %>/comments"><strong>Comments:</strong></a>
+	<% post.comments.forEach(function(comment){ %>
+	<div id="comments">
+		<p>
+		 <a href="/posts/<%= post._id %>/comments/<%= comment.id %>"><%= comment.content %></a>
+			<!-- TODO: ADD DATE -->
+		</p>
+	</div>
+	<% }) %>
+	<div>
+	<button class="btn btn-success"><a href="/posts">Return Home</a></button>
+	<button class="btn btn-success"><a href="/posts/<%= post._id %>/comments/new">Add a comment</a></button>
+	</div>
+	  <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+    <input class="btn btn-danger" type="submit" value="Delete">
+  </form>
+ <a class="btn btn-default" href="/signup">Signup</a>
+ <a class="btn btn-default" href="/login">Login</a>
+ <a class="btn btn-default" href="/logout">Logout</a>
+<% include ../partials/footer %>

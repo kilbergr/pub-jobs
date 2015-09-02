@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+<div id="profile">
+<p class="bg-warning"> You're posting as <%= user.firstName %>.</p>
+<img width="100px" src="<%= user.avatar %>" alt="profile picture">
+</div>
+<div id="newpost">
+<form action="/posts" method="POST">
+	<label for="post[title]">Post Title (required):
+		<input autofocus type="text" name="post[title]" id="">
+	</label>
+	<label for="post[content]">Post Content (required):
+		<!-- TODO: Content not editable -->
+		<input type="text" name="post[content]" id="">
+	</label>
+	<label for="post[tag]">Tags (separate by commas please):
+		<input type="text" name="post[tag]" id="">
+	</label>
+	<!-- adding a date as a hidden field -->
+	<!-- <input type="hidden" name="post[date]" id="posted"> -->
+	<!-- Add user on submission of post -->
+		<input class="btn btn-default" type="submit" value="Submit">
+</form>
+</div>
+ <a class="btn btn-default" href="/logout">Logout</a>
+<button class="btn btn-success"><a href="/posts">Return Home</a></button>
+<% include ../partials/footer %>

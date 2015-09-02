@@ -1,0 +1,12 @@
+body{
+	margin: 10px;
+	padding-left: 10px;
+	background-color: #C60443;
+}
+
+.logo{
+	background-color: lightblue;
+	height: 100px;
+	margin-left: -20px;
+}
+

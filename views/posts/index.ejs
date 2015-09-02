@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+<h1>OMG IT'S A JOB BOARD CLONE</h1>
+<%  posts.forEach(function(post) { %>
+	<div>
+		<h4><a href="/posts/<%= post._id %>">
+			<%= post.title%>
+			</a>
+		</h4>
+		<h5>Originally posted on <%= post.date %></h5>
+		<p><%= post.content %>
+		
+		</p>
+		<p>
+			<a href="/posts/<%= post._id %>/edit"><button class="btn btn-info">Edit Post</button></a>
+
+			<a href="/posts/<%= post._id %>/comments/new"><button class="btn btn-primary">Add a comment</button></a>
+		</p>
+	<hr>
+</div>
+<% }) %>
+ <a class="btn btn-default" href="/signup">Signup</a>
+ <a class="btn btn-default" href="/login">Login</a>
+ <a class="btn btn-default" href="/logout">Logout</a>
+ <a class="btn btn-success" href="/posts/new">Add a new post</a>
+
+
+<% include ../partials/footer %>

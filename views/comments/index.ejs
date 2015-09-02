@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<h2>Comments on comments on comments</h2>
+<%  post.comments.forEach(function(comment) { %>
+	<div>
+		<p class="bg-info"><a href="/posts/<%= post.id %>/comments/<%= comment._id %>">
+			<%= comment.content%>
+			</a>
+		</p>
+		<h5>Originally commented on <%= comment.date %> by <%= user.firstName%></h5>
+	
+		<p>
+		<button class="btn btn-success"><a href="/posts/<%= post.id %>">View post</a></button>
+			<button class="btn btn-success"><a href="/posts/<%= post.id %>/comments/<%= comment._id %>">View comment</a></button>
+
+		</p>
+	<hr>
+</div>
+<% }) %>
+ <a class="btn btn-default" href="/signup">Signup</a>
+ <a class="btn btn-default" href="/login">Login</a>
+  <a class="btn btn-default" href="/logout">Logout</a>
+	<button class="btn btn-success"><a href="/posts/<%= post.id %>/comments/new">New Comment</a></button>
+	<button class="btn btn-success"><a href="/posts">Return Home</a></button>
+
+<% include ../partials/footer %>

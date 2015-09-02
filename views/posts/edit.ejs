@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+<form action="/posts/<%= post._id %>?_method=put" method="POST">
+	<label for="post[title]">Post Title (required):
+		<input autofocus type="text" name="post[title]" value="<%=post.title%>" id="">
+	</label>
+	<label for="post[content]">Post Content (required):
+	<!-- TODO: Content not editable -->
+		<input type="text" name="post[content]" value="<%=post.content%>" id="">
+	</label>
+	<label for="post[tag]">Tags (separate by commas please):
+		<input type="text" name="post[tag]" value="<%=post.tag%>" id="">
+	</label>
+	<!-- TODO: Add date on submission of post -->
+	<!-- Add user on submission of post -->
+		<input class="btn btn-default" type="submit" id="newpost" value="Edit">
+</form>
+<button class="btn btn-success"><a href="/posts">Return Home</a></button>
+<% include ../partials/footer %>
