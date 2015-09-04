@@ -1,0 +1,48 @@
+[{		"username": "RebeccaK",
+		"firstName": "Rebecca",
+		"lastName": "K",
+		"description": "Not a tech writer...yet",
+    "skills": "Puns, JavaScript, speaking quietly",
+    "phone": "555-555-5555",
+    "email": "rek@rek.com",
+    "password": "rek",
+    "avatar": "https://s.yimg.com/ea/img/-/111007/doggie_makeover_hero_178sip7-178sirt.jpg",
+    "works": 
+    [
+    {
+    	"title": "You can't go home again",
+    	"summary": "The home you remember no longer exists. It's a hard truth, but one you must eventually face.",
+			"date": "01/01/2011"
+    },
+    {
+    	"title": "You can't take it with you",
+    	"summary": "We must leave something deep behind. There ain't no ash will burn.",
+    	"date": "07/04/2015",
+    	"link": "https://www.youtube.com/watch?v=fZz0T1YF7_M"
+    }
+    ]
+},
+{
+		"username": "IanS",
+		"firstName": "Ian",
+		"lastName": "S",
+		"description": "A tech writer...for now",
+    "skills": "Runs, Ruby, speaking loudly",
+    "phone": "888-888-8888",
+    "email": "ian@ian.com",
+    "password": "ian",
+    "avatar": "https://shechive.files.wordpress.com/2012/02/a-kitty-cat-7.jpg",
+    "works": [{
+    	"title": "You can go home again",
+    	"summary": "The home you remember is exactly how you left it. It's a hard truth, but one you already know.",
+			"date": "10/10/2001"
+    },
+    {
+    	"title": "You can take it with you",
+    	"summary": "We must leave nothing deep behind. Ash trees will burn.",
+    	"date": "12/07/2014",
+    	"link": "https://www.youtube.com/watch?v=4S9wWGmtAiU"
+    }]
+	}
+	]
+

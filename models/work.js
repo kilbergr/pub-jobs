@@ -9,10 +9,9 @@ var workSchema = new mongoose.Schema({
 												type: String, 
 												required: true
 											},
-											date: {
-												type: String
-											},
-												user: {
+											date: String,
+											link: String,
+											user: {
 												type: mongoose.Schema.Types.ObjectId,
 												ref: "User"
 											}

@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 <% include ../partials/header %>
-<h1>OMG IT'S A JOB BOARD CLONE</h1>
+<h1>IT'S A JOB BOARD CLONE</h1>
 <%  users.forEach(function(user) { %>
 	<div>
 		<h4><a href="/users/<%= user._id %>">
@@ -8,11 +8,10 @@
 			</a>
 		</h4>
 		<p><%= user.description %></p>
-		
-		<p>
-			<a href="/users/<%= user._id %>/edit"><button class="btn btn-info">Edit user</button></a>
 
-			<a href="/users/<%= user._id %>/comments/new"><button class="btn btn-primary">Add a comment</button></a>
+		<p>
+
+			<a href="/users/<%= user._id %>"><button class="btn btn-primary">Meet Me</button></a>
 		</p>
 	<hr>
 </div>

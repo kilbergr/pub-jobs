@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/reddit_app");
+mongoose.connect("mongodb://localhost/publet_app");
 
 mongoose.set("debug", true);
 

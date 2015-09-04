@@ -3,7 +3,7 @@
 <div id="profile">
 <form method="POST" action="/signup" >
   <div>
-    <label for="user">Username:    
+    <label for="user">* Username:    
       <input type="text" id="username" name="user[username]" autofocus>(required)
     </label>
   </div>
@@ -18,18 +18,28 @@
     </label>
   </div>
   <div>
-    <label for="user">Email:    
+    <label for="user">* Email:    
       <input type="text" id="email" name="user[email]" >(required)
     </label>
   </div>
   <div>
-    <label> Password: 
+    <label for="user">Phone Number:    
+      <input type="text" id="phone" name="user[phone]" >
+    </label>
+  </div>
+  <div>
+    <label>* Password: 
       <input type="password" id="pass" name="user[password]">(required)
      </label>
   </div>
   <div>
-    <label for="user">Description:    
-      <input type="text" id="description" name="user[description]" minlength="25">(Tell us a bit about yourself--at least 25 characters, please!)
+    <label for="user">* Description:    
+      <input type="text" id="description" name="user[description]" minlength="25">Tell us a bit about yourself--at least 25 characters, please! (required)
+    </label>
+  </div>
+  <div>
+    <label for="user">* Skills:    
+      <input type="text" id="skills" name="user[skills]">(required)
     </label>
   </div>
   <div>

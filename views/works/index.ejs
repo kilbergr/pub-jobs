@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+<h1>OMG IT'S A JOB BOARD CLONE</h1>
+<%  works.forEach(function(work) { %>
+	<div>
+		<h4><a href="<%=work.link%>"><%= work.title%></a></h4>
+		<h5>Originally published on <%= work.date %></h5>
+		<p><%= work.summary %></p>
+		<a href="/works/<%= work._id %>/edit"><button class="btn btn-info">Edit</button></a>
+	<hr>
+</div>
+<% }) %>
+ <a class="btn btn-default" href="/signup">Signup</a>
+ <a class="btn btn-default" href="/login">Login</a>
+ <a class="btn btn-default" href="/logout">Logout</a>
+ <a class="btn btn-success" href="/works/new">Add a new work</a>
+
+
+<% include ../partials/footer %>

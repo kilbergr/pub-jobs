@@ -1,0 +1,54 @@
+<% include ../partials/header %>
+<h1>Create Your Profile</h1><div>
+<form action="/users/<%= user._id %>?_method=put" method="POST">
+  <div>
+    <label for="user">* Username:    
+      <input type="text" id="username" name="user[username]" autofocus value="<%=user.username%>">(required)
+    </label>
+  </div>
+  <div>
+    <label for="firstName">First Name:    
+      <input type="text" name="user[firstName]" value="<%=user.firstName%>">
+    </label>
+  </div>
+    <div>
+    <label for="lastName">Last Name:    
+      <input type="text" name="user[lastName]" value="<%=user.lastName%>">
+    </label>
+  </div>
+  <div>
+    <label for="user">* Email:    
+      <input type="text" id="email" name="user[email]" value="<%=user.email%>">(required)
+    </label>
+  </div>
+  <div>
+    <label for="user">Phone Number:    
+      <input type="text" id="phone" name="user[phone]" value="<%=user.phone%>">
+    </label>
+  </div>
+  <div>
+    <label>* Password: 
+      <input type="password" id="pass" name="user[password]" value="<%=user.password%>">
+     </label>(required)
+  </div>
+  <div>
+    <label for="user">* Description:    
+      <input type="text" id="description" name="user[description]" minlength="25" value="<%=user.description%>">Tell us a bit about yourself--at least 25 characters, please! (required)
+    </label>
+  </div>
+  <div>
+    <label for="user">* Skills:    
+      <input type="text" id="skills" name="user[skills]" value="<%=user.skills%>">(required)
+    </label>
+  </div>
+  <div>
+    <label> Add profile picture (URL):
+    <input type="text" name="user[avatar]" value="<%=user.avatar%>">
+    </label>
+  </div>
+  <div>
+    <input type="submit" value="Sign up">
+  </div>
+</form>
+</div>
+<% include ../partials/footer %>

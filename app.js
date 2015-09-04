@@ -35,7 +35,7 @@ app.post("/signup", function (req, res) {
   db.User.create(newUser, function (err, user) {
     if (user) {
       req.login(user);
-      res.redirect("/posts");
+      res.redirect("/users");
     } else {
       console.log(err);
       // TODO - handle errors in ejs!
@@ -54,7 +54,7 @@ app.post("/login", function (req, res) {
   function (err, user) {
     if (!err && user !== null) {
       req.login(user);
-      res.redirect("/posts");
+      res.redirect("/users");
     } else {
       // TODO - handle errors in ejs!
       res.render("users/login");

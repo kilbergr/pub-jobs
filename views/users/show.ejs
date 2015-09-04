@@ -3,16 +3,17 @@
 	<p><%=user.description%></p>
 	<a href="/users/<%= user._id %>/works"><strong>Comments:</strong></a>
 	<% user.works.forEach(function(work){ %>
-	<div id="works">
-		<p>
-		 <a href="/users/<%= user._id %>/works/<%= work.id %>"><%= work.content %></a>
-			<!-- TODO: ADD DATE -->
-		</p>
+	<div id="eachWork">
+		<h4><a href="<%=work.link%>"><%= work.title%></a></h4>
+		<h5>Originally published on <%= work.date %></h5>
+		<p><%= work.summary %></p>
+		<a href="/works/<%= work._id %>/edit"><button class="btn btn-info">Edit</button></a>
+	<hr>
 	</div>
 	<% }) %>
 	<div>
 	<button class="btn btn-success"><a href="/users">Return Home</a></button>
-	<button class="btn btn-success"><a href="/users/<%= user._id %>/works/new">Add a work</a></button>
+	<button class="btn btn-success"><a href="/users/<%= user._id %>/works/new">Add a work sample</a></button>
 	</div>
 	  <form action="/users/<%= user._id %>?_method=DELETE" method="POST">
     <input class="btn btn-danger" type="submit" value="Delete">

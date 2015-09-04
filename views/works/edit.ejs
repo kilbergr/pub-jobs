@@ -3,10 +3,15 @@
 	<label for="work[title]">Title (required):
 		<input autofocus type="text" name="work[title]" value="<%=work.title%>" id="">
 	</label>
-	<label for="work[content]">Summary (required):
-		<input type="text" name="work[summary]" value="<%=work.content%>" id="">
+	<label for="work[summary]">Short Summary (required):
+		<input type="text" name="work[summary]" value="<%=work.summary%>" id="">
 	</label>
-
+	<label for="work[link]">Link:
+		<input type="text" name="work[link]" value="<%=work.link%>" id="">
+	</label>
+	<label for="work[date]">Date Written:
+		<input type="text" name="work[date]" value="<%=work.date%>" id="">
+	</label>
 		<input class="btn btn-default" type="submit" id="newwork" value="Edit">
 </form>
 <button class="btn btn-success"><a href="/works">Return Home</a></button>
