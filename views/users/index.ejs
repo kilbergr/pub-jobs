@@ -1,6 +1,25 @@
 <% include ../partials/header %>
-    <h2>Your very own fake reddit sign in</h2>
-    <a href="/signup">Signup</a>
-    <br>
-    <a href="/login">Login</a>
+<% include ../partials/header %>
+<h1>OMG IT'S A JOB BOARD CLONE</h1>
+<%  users.forEach(function(user) { %>
+	<div>
+		<h4><a href="/users/<%= user._id %>">
+			<%= user.firstName%> <%= user.lastName%>
+			</a>
+		</h4>
+		<p><%= user.description %></p>
+		
+		<p>
+			<a href="/users/<%= user._id %>/edit"><button class="btn btn-info">Edit user</button></a>
+
+			<a href="/users/<%= user._id %>/comments/new"><button class="btn btn-primary">Add a comment</button></a>
+		</p>
+	<hr>
+</div>
+<% }) %>
+ <a class="btn btn-default" href="/signup">Signup</a>
+ <a class="btn btn-default" href="/login">Login</a>
+ <a class="btn btn-default" href="/logout">Logout</a>
+
+
 <% include ../partials/footer %>

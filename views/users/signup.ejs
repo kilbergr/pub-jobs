@@ -1,26 +1,36 @@
 <% include ../partials/header %>
-<h1>Sign up for full faux-Reddit access</h1>
+<h1>Create an Account</h1>
 <div id="profile">
 <form method="POST" action="/signup" >
   <div>
+    <label for="user">Username:    
+      <input type="text" id="username" name="user[username]" autofocus>(required)
+    </label>
+  </div>
+  <div>
     <label for="firstName">First Name:    
-      <input type="text" name="user[firstName]" autofocus>
+      <input type="text" name="user[firstName]" >
     </label>
   </div>
     <div>
     <label for="lastName">Last Name:    
-      <input type="text" name="user[lastName]" autofocus>
+      <input type="text" name="user[lastName]" >
     </label>
   </div>
   <div>
     <label for="user">Email:    
-      <input type="text" id="email" name="user[email]" autofocus>
+      <input type="text" id="email" name="user[email]" >(required)
     </label>
   </div>
   <div>
     <label> Password: 
-      <input type="password" id="pass" name="user[password]">
+      <input type="password" id="pass" name="user[password]">(required)
      </label>
+  </div>
+  <div>
+    <label for="user">Description:    
+      <input type="text" id="description" name="user[description]" minlength="25">(Tell us a bit about yourself--at least 25 characters, please!)
+    </label>
   </div>
   <div>
     <label> Add profile picture (URL):

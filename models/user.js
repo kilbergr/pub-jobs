@@ -3,26 +3,39 @@ var SALT_WORK_FACTOR = 10;
 var mongoose = require("mongoose");
 
 var userSchema = new mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+      unique: true
+    },
     firstName: String,
     lastName: String,
+    description: {
+      type: String,
+      required: true
+    },
+    skills: {
+      type: String,
+      required: true
+    },
+    phone: {
+      type: String,
+      required: true
+    },
     email: {
       type: String,
       lowercase: true,
-      required: true
+      required: true,
+      unique: true
     },
     password: {
       type: String,
       required: true
     },
     avatar: String,
-    
-    comments: [{
+    works: [{
                type: mongoose.Schema.Types.ObjectId,
-               ref: "Comment"
-               }],
-    posts: [{
-               type: mongoose.Schema.Types.ObjectId,
-               ref: "Post"
+               ref: "Work"
                }],
 
   });

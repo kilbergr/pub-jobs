@@ -70,20 +70,20 @@ app.get('/logout', function(req, res){
 //POST routes
 //ROOT
 app.get('/', function(req, res){
-	res.redirect("/posts");
+	res.redirect("/users");
 });
 
 //index
-app.get('/posts', function(req, res){
+app.get('/users', function(req, res){
 
-		db.Post.find({}, function(err, posts){
+		db.User.find({}, function(err, users){
 			if(err){
 				console.log(err);
 				//TODO: figure out what to do with errors 
 				res.render("errors/404")
 			}
 			else{
-				res.render("posts/index", {posts:posts});
+				res.render("users/index", {users:users});
 
 			}
 	
@@ -91,206 +91,206 @@ app.get('/posts', function(req, res){
 })
 
 //new
-app.get('/posts/new', routeMiddleware.ensureLoggedIn, function(req, res){
+app.get('/works/new', routeMiddleware.ensureLoggedIn, function(req, res){
 	req.currentUser(function(err,user){
-		res.render('posts/new', {user:user});
+		res.render('works/new', {user:user});
 	});
 })
 
 //create
-app.post('/posts', routeMiddleware.ensureLoggedIn, function(req, res){
-	db.Post.create(req.body.post, function(err, post){
+app.post('/works', routeMiddleware.ensureLoggedIn, function(req, res){
+	db.Work.create(req.body.work, function(err, work){
 		if(err){
 			console.log(err);
 			//TODO: error handling
-			res.render("posts/new");
+			res.render("works/new");
 		}
 		else{
 			req.currentUser(function(err,user){
-				//add user to post
-				post.user = user._id;
-				//user.posts.push(post);
-				post.save();
+				//add user to works
+				work.user = user._id;
+				//user.works.push(work);
+				work.save();
 				//user.save();
-				res.redirect('/posts');
+				res.redirect('/user/works');
 			})
 		}
 	});
 });
 
 //show
-app.get('/posts/:id', function(req, res){
+app.get('/users/:id', function(req, res){
 		
-			db.Post.findById(req.params.id)
-			.populate('comments')
-			.exec(function(err, post){
+			db.User.findById(req.params.id)
+			.populate('works')
+			.exec(function(err, user){
 				if(err){
 					console.log(err);
 					//TODO: error handling
-					res.render('posts/index')
+					res.render('users/index')
 				}
 				else{
-					res.render("posts/show", {post:post})
+					res.render("users/show", {user:user})
 				}
 
 		});
 });
 
 //edit
-app.get('/posts/:id/edit', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectPoster, function(req, res){
-			db.Post.findById(req.params.id)
+app.get('/users/:id/edit', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectUser, function(req, res){
+			db.User.findById(req.params.id)
 			.populate('comments')
-			.exec(function(err, post){
+			.exec(function(err, user){
 				if(err){
 					console.log(err);
 					//TODO: error handling
-					res.render('posts/show')
+					res.render('users/show')
 				}
 				else{
-					res.render('posts/edit', {post:post})
+					res.render('users/edit', {user:user})
 				}
 			});
 });
 
 //update
-app.put('/posts/:id', routeMiddleware.ensureLoggedIn, function(req, res){
-	db.Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, post){
+app.put('/users/:id', routeMiddleware.ensureLoggedIn, function(req, res){
+	db.User.findByIdAndUpdate(req.params.id, req.body.user, function(err, user){
 		if(err){
 			console.log(err);
 			//TODO: error handling
-			res.render('posts/edit');
+			res.render('users/edit');
 		}
 		else{
-			res.redirect('/posts');
+			res.redirect('/users');
 		}
 	});
 });
 
 //destroy
-app.delete('/posts/:id', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectPoster, function(req, res){
-	db.Post.findByIdAndRemove(req.params.id, function(err, post){
+app.delete('/Users/:id', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectUser, function(req, res){
+	db.User.findByIdAndRemove(req.params.id, function(err, user){
 		if(err){
 			console.log(err);
 			//TODO: error handling
-			res.render('posts/show');
+			res.render('users/show');
 		}
 		else{
-			post.remove();
-			res.redirect('/posts');
+			user.remove();
+			res.redirect('/users');
 		}
 	});
 });
 
 //COMMENT routes
 //index
-app.get('/posts/:post_id/comments', function(req, res){
-	req.currentUser(function(err,user){
-		db.Post.findById(req.params.post_id)
-		.populate('comments')
-		.exec(function(err, post){
-			if(err){
-				//TODO: error handling
-				console.log(err);
-				res.render('/posts');
-			}
-			else{
-				res.render('comments/index', {post:post, user:user});
-			}
-		});
-	});
-});
+// app.get('/posts/:post_id/comments', function(req, res){
+// 	req.currentUser(function(err,user){
+// 		db.Post.findById(req.params.post_id)
+// 		.populate('comments')
+// 		.exec(function(err, post){
+// 			if(err){
+// 				//TODO: error handling
+// 				console.log(err);
+// 				res.render('/posts');
+// 			}
+// 			else{
+// 				res.render('comments/index', {post:post, user:user});
+// 			}
+// 		});
+// 	});
+// });
 
-//new
-app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn, function(req, res){
-	req.currentUser(function(err,user){
-		db.Post.findById(req.params.post_id)
-		.populate('comments')
-		.exec(function(err, post){
-			if(err){
-				//TODO: error handling
-				console.log(err);
-				res.render('/posts');
-			}
-			else{
-				res.render('comments/new', {post:post, user:user});
-			}
-		});
-	});
-});
+// //new
+// app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn, function(req, res){
+// 	req.currentUser(function(err,user){
+// 		db.Post.findById(req.params.post_id)
+// 		.populate('comments')
+// 		.exec(function(err, post){
+// 			if(err){
+// 				//TODO: error handling
+// 				console.log(err);
+// 				res.render('/posts');
+// 			}
+// 			else{
+// 				res.render('comments/new', {post:post, user:user});
+// 			}
+// 		});
+// 	});
+// });
 
-//create
-app.post('/posts/:post_id/comments', routeMiddleware.ensureLoggedIn, function(req, res){
-	db.Comment.create(req.body.comment, function (err, comment){
-		if(err){
-			//TODO: error handling
-			console.log(err);
-			res.render('comments/new');
-		}
-		else{
-			req.currentUser(function(err,user){
-				db.Post.findById(req.params.post_id, function(err, post){
-				//add user to comment
-				post.comments.push(comment);
-				comment.post = post._id;
-				comment.user = user._id;
-				comment.save();
-				post.save();
-				res.redirect('/posts/' + req.params.post_id + "/comments");
-				});
-			});
-		}
-	});
-});
+// //create
+// app.post('/posts/:post_id/comments', routeMiddleware.ensureLoggedIn, function(req, res){
+// 	db.Comment.create(req.body.comment, function (err, comment){
+// 		if(err){
+// 			//TODO: error handling
+// 			console.log(err);
+// 			res.render('comments/new');
+// 		}
+// 		else{
+// 			req.currentUser(function(err,user){
+// 				db.Post.findById(req.params.post_id, function(err, post){
+// 				//add user to comment
+// 				post.comments.push(comment);
+// 				comment.post = post._id;
+// 				comment.user = user._id;
+// 				comment.save();
+// 				post.save();
+// 				res.redirect('/posts/' + req.params.post_id + "/comments");
+// 				});
+// 			});
+// 		}
+// 	});
+// });
 
-//show
-app.get('/posts/:post_id/comments/:id', function(req, res){
-		db.Comment.findById(req.params.id)
-		.populate('post')
-		.exec(function(err, comment){
-			if(err){
-			//TODO: error handling
-				console.log(err);
-				res.render('comments');
-			}
-			else
-			res.render('comments/show', {comment:comment, post:comment.post});
-		});
-});
+// //show
+// app.get('/posts/:post_id/comments/:id', function(req, res){
+// 		db.Comment.findById(req.params.id)
+// 		.populate('post')
+// 		.exec(function(err, comment){
+// 			if(err){
+// 			//TODO: error handling
+// 				console.log(err);
+// 				res.render('comments');
+// 			}
+// 			else
+// 			res.render('comments/show', {comment:comment, post:comment.post});
+// 		});
+// });
 
-//edit
-app.get('/posts/:post_id/comments/:id/edit', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectCommenter, function(req, res){
-	db.Comment.findById(req.params.id, function(err, comment){
-		res.render('comments/edit', {comment:comment});
-	});
-});
+// //edit
+// app.get('/posts/:post_id/comments/:id/edit', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectCommenter, function(req, res){
+// 	db.Comment.findById(req.params.id, function(err, comment){
+// 		res.render('comments/edit', {comment:comment});
+// 	});
+// });
 
-//update
-app.put('/posts/:post_id/comments/:id', routeMiddleware.ensureLoggedIn, function(req, res){
-	db.Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
-		if(err){
-			//TODO: error handling
-			console.log(err);
-			res.render('comments/edit');
-		}
-		else{
-			res.redirect('/posts/' + comment.post + "/comments");
-		}
-	});
-});
+// //update
+// app.put('/posts/:post_id/comments/:id', routeMiddleware.ensureLoggedIn, function(req, res){
+// 	db.Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, comment){
+// 		if(err){
+// 			//TODO: error handling
+// 			console.log(err);
+// 			res.render('comments/edit');
+// 		}
+// 		else{
+// 			res.redirect('/posts/' + comment.post + "/comments");
+// 		}
+// 	});
+// });
 
-//destroy
-app.delete('/posts/:post_id/comments/:id', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectCommenter, function(req, res){
-	db.Comment.findByIdAndRemove(req.params.id, function(err, comment){
-		if(err){
-			//TODO: error handling
-			console.log(err);
-			res.render('comments/index');
-		}
-		else{
-			res.redirect('/posts/' + comment.post + '/comments');
-		}
-	});
-});
+// //destroy
+// app.delete('/posts/:post_id/comments/:id', routeMiddleware.ensureLoggedIn, routeMiddleware.ensureCorrectCommenter, function(req, res){
+// 	db.Comment.findByIdAndRemove(req.params.id, function(err, comment){
+// 		if(err){
+// 			//TODO: error handling
+// 			console.log(err);
+// 			res.render('comments/index');
+// 		}
+// 		else{
+// 			res.redirect('/posts/' + comment.post + '/comments');
+// 		}
+// 	});
+// });
 
 //remaining errors
 app.get('*', function(req, res){

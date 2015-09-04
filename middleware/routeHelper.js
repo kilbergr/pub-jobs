@@ -10,10 +10,10 @@ var routeHelpers = {
     }
   },
 
-  ensureCorrectPoster: function(req, res, next) {
-    db.Post.findById(req.params.id, function(err,post){
-      if (post.user != req.session.id) {
-        res.redirect('/posts');
+  ensureCorrectUser: function(req, res, next) {
+    db.User.findById(req.params.id, function(err,user){
+      if (user.user != req.session.id) {
+        res.redirect('/users');
       }
       else {
 
@@ -35,7 +35,7 @@ var routeHelpers = {
 
   preventLoginSignup: function(req, res, next) {
     if (req.session.id !== null && req.session.id !== undefined) {
-      res.redirect('/posts');
+      res.redirect('/users');
     }
     else {
      return next();
