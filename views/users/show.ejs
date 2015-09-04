@@ -1,24 +1,25 @@
 <% include ../partials/header %>
 <h2 class="bg-warning">About <%= user.firstName %></h2>
-	<p><%=user.description%></p>
-	<a href="/users/<%= user._id %>/works"><strong>Comments:</strong></a>
-	<% user.works.forEach(function(work){ %>
-	<div id="eachWork">
-		<h4><a href="<%=work.link%>"><%= work.title%></a></h4>
-		<h5>Originally published on <%= work.date %></h5>
-		<p><%= work.summary %></p>
-		<a href="/works/<%= work._id %>/edit"><button class="btn btn-info">Edit</button></a>
+<img width="100px" src="<%= user.avatar %>" alt="profile picture">
+<p><%=user.description%></p>
+<strong>Prior Work:</strong></a>
+<% user.works.forEach(function(work){ %>
+<div id="eachWork">
+	<h4><a href="<%=work.link%>"><%= work.title%></a></h4>
+	<h5>Originally published on <%= work.date %></h5>
+	<p><%= work.summary %></p>
+	<a href="/works/<%= work._id %>/edit"><button class="btn btn-info">Edit</button></a>
 	<hr>
-	</div>
-	<% }) %>
-	<div>
+</div>
+<% }) %>
+<div>
 	<button class="btn btn-success"><a href="/users">Return Home</a></button>
 	<button class="btn btn-success"><a href="/users/<%= user._id %>/works/new">Add a work sample</a></button>
-	</div>
-	  <form action="/users/<%= user._id %>?_method=DELETE" method="POST">
-    <input class="btn btn-danger" type="submit" value="Delete">
-  </form>
- <a class="btn btn-default" href="/signup">Signup</a>
- <a class="btn btn-default" href="/login">Login</a>
- <a class="btn btn-default" href="/logout">Logout</a>
+</div>
+<form action="/users/<%= user._id %>?_method=DELETE" method="POST">
+	<input class="btn btn-danger" type="submit" value="Delete">
+</form>
+<a class="btn btn-default" href="/signup">Signup</a>
+<a class="btn btn-default" href="/login">Login</a>
+<a class="btn btn-default" href="/logout">Logout</a>
 <% include ../partials/footer %>

@@ -4,14 +4,19 @@
 <img width="100px" src="<%= user.avatar %>" alt="profile picture">
 </div>
 <div id="newwork">
-<form action="/works" method="POST">
+<form action="/users/<%=user.id%>/works" method="POST">
 	<label for="work[title]">Title (required):
 		<input autofocus type="text" name="work[title]" id="">
 	</label>
 	<label for="work[summary]">Summary (required):
 		<input type="text" name="work[summary]" id="">
 	</label>
-
+	<label for="work[date]">When was this piece published?:
+		<input type="text" name="work[date]" id="">
+	</label>
+	<label for="work[link]">Link to piece if available: 
+		<input type="text" name="work[link]" id="">
+	</label>
 	<!-- TODO: Add user on submission of work -->
 		<input class="btn btn-default" type="submit" value="Submit">
 </form>
