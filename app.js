@@ -22,7 +22,27 @@ app.use(session({
 	name: 'snickerdoodle'
 }));
 
+//search routes
+app.get('/search', function(req,res){
+  res.render('users/search');
+});
 
+app.get('/searchresults', function(req,res){
+ var result = req.query.searchresults;
+
+  db.User.find({ firstName: result }, function (err, users) {
+           	if(err){
+				console.log(err);
+				//TODO: figure out what to do with errors 
+				res.render("errors/404")
+			}
+			else{
+				res.render("users/index", {users:users});
+
+			}
+
+	})
+})
 //LOGIN RELATED ROUTES
 //signup page
 app.get('/signup', routeMiddleware.preventLoginSignup, function(req,res){
@@ -178,10 +198,11 @@ app.post('users/:id/works', routeMiddleware.ensureLoggedIn, function(req, res){
 	db.Work.create(req.body.work, function(err, work){
 		if(err){
 			console.log(err);
-			//TODO: error handling
+			//TODO: better error handling
 			res.render("works/new");
 		}
 		else{
+			debugger;
 			req.currentUser(function(err,user){
 				//add user to works
 				work.user = user._id;

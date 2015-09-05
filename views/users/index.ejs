@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/header %>
 <h1>IT'S A JOB BOARD CLONE</h1>
+ <a class="btn btn-default" href="/search">Search</a>
 <%  users.forEach(function(user) { %>
 	<div>
 		<h4><a href="/users/<%= user._id %>">
@@ -16,6 +17,7 @@
 	<hr>
 </div>
 <% }) %>
+
  <a class="btn btn-default" href="/signup">Signup</a>
  <a class="btn btn-default" href="/login">Login</a>
  <a class="btn btn-default" href="/logout">Logout</a>
